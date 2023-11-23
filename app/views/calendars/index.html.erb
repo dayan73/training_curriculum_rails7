@@ -12,9 +12,9 @@
     <% @week_days.each do |day| %>
       <div class='item'>
         <div class="date-box">
-         <%= form.label :date, "予定の日付" %>
-         <%= form.date_field :date, class: "form-control" %>
-      </div>
+          <%= label_tag "date", "予定の日付" %>
+          <%= text_field_tag "date", Date.today, class: "form-control" %>
+        </div>
         <ul class='content'>
         <% if day[:plans].length != 0 %>
           <% day[:plans].each do |plan| %>

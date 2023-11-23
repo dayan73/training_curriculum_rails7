@@ -11,9 +11,10 @@
   <div class='calendar'>
     <% @week_days.each do |day| %>
       <div class='item'>
-        <div class='date'>
-          <% day[:month] %>/<% day[:date] %>
-        </div>
+        <div class="date-box">
+         <%= form.label :date, "予定の日付" %>
+         <%= form.date_field :date, class: "form-control" %>
+      </div>
         <ul class='content'>
         <% if day[:plans].length != 0 %>
           <% day[:plans].each do |plan| %>

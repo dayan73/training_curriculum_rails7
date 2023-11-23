@@ -8,8 +8,12 @@ class CalendarsController < ApplicationController
 
   # 予定の保存
   def create
-    Plan.create(plan_params)
-    redirect_to action: :index
+    @calendar = Calendar.new(calendar_params)
+    if @calendar.save
+      redirect_to @calendar
+    else
+      render :new
+    end
   end
 
   private

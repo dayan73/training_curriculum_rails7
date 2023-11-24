@@ -2,22 +2,22 @@
 class CalendarsController < ApplicationController
   def index
     getWeek
-    @plan = Plan.new
+    @plan = Plan.new 
   end
 
   # 予定の保存
   def create
-    @calendar = Calendar.new(calendar_params)
-    if @calendar.save
-      redirect_to @calendar
+    @plan = Plan.new(plan_params)
+    if @plan.save 
+    redirect_to calendars_path
     else
-      render :new
+    render :new
     end
   end
 
   private
   def plan_params
-    params.require(:calendars).permit(:date, :plan)
+    params.require(:plan).permit(:date, :plan) # キーを:calendarsから:planに修正しました
   end
 
 def  getWeek

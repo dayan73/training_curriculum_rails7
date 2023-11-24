@@ -1,8 +1,10 @@
  # １週間のカレンダーと予定が表示されるページ
 class CalendarsController < ApplicationController
   def index
-    getWeek
-    @plan = Plan.new 
+
+    get_week
+    @plan = Plan.new
+
   end
 
   # 予定の保存
@@ -20,9 +22,11 @@ class CalendarsController < ApplicationController
     params.require(:plan).permit(:date, :plan) # キーを:calendarsから:planに修正しました
   end
 
-def  getWeek
+
+def get_week
     # 曜日の配列
     wdays = ['(日)','(月)','(火)','(水)','(木)','(金)','(土)']
+
 
 
     # 今日の日付
@@ -44,6 +48,7 @@ def  getWeek
           today_plans.push(plan.plan)
         end
       end
+
       # リファクタリング前のコードでは、
     # 月、日、予定を連想配列として格納していたが、
     # 曜日の情報も追加するため、連想配列に wday キーを追加する
@@ -53,6 +58,7 @@ def  getWeek
       wday: wdays[(@todays_date + x).wday], # 曜日の情報
       plans: today_plans
     }
+
       @week_days.push(days)
     end
   end

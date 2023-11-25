@@ -9,12 +9,8 @@ class CalendarsController < ApplicationController
 
   # 予定の保存
   def create
-    @plan = Plan.new(plan_params)
-    if @plan.save 
-    redirect_to calendars_path
-    else
-    render :new
-    end
+    Plan.create(plan_params)
+    redirect_to action: :index
   end
 
   private
@@ -36,7 +32,7 @@ def get_week
     @week_days = []
 
     # 今日から6日後までの予定を取得
-    plans = Plan.where(date: @todays_date..(@todays_date + 6))
+    plans = Plan.where(date: @todays_date..@todays_date + 6)
 
     # 7日分のデータを取得
     7.times do |x|
